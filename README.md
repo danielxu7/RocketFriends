@@ -1,4 +1,4 @@
-# rocket-league-friend-finder
+# rocket-friends
 A website dedicated to helping you make more Rocket League friends!
 
 To run this locally, you will need to make a folder called "config".
