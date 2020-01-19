@@ -1,49 +1,67 @@
 // JS file for index.html
 const query = document.querySelector.bind(document);
+const $loginToggle = query('#login-toggle');
+const $loginForm = query('#login-form');
+const $loginButton = query('#login-button');
+const $signupToggle = query('#signup-toggle');
+const $signupForm = query('#signup-form');
+const $signupButton = query('#signup-button');
 
-const signupFormSubmit = async (e) => {
+// show signup form
+const signupToggleClick = async () => {
+    $signupForm.style.display = 'block';
+    $loginForm.style.display = 'none';
+    $signupToggle.style.borderBottom = '1px solid red';
+    $loginToggle.style.borderBottom = 'none';
+};
+
+// show login form
+const loginToggleClick = async () => {
+    $loginForm.style.display = 'block';
+    $signupForm.style.display = 'none';
+    $loginToggle.style.borderBottom = '1px solid red';
+    $signupToggle.style.borderBottom = 'none';
+};
+
+// sign up user and go to home page
+const signupFormSubmit = async () => {
     let user = {};
 
     // set user properties to the form fields
-    [...e.target.elements].forEach(element => {
+    [...$signupForm.elements].forEach(element => {
         user[element.name] = (element.selectedIndex !== undefined) ? element.selectedIndex : element.value;
     });
 
     try {
-        await axios.post("/users", user);
-        await axios.get('/main');
-    } catch (e) {}
+        await axios.post('/users', user);
+        window.location.href = '/home'
+    } catch (ex) {
+        // could not create user
+    }
 };
 
-const loginFormSubmit = async (e) => {
+// log user in and go to home page
+const loginFormSubmit = async () => {
     const user = {
-        email: e.target.elements[0].value,
-        password: e.target.elements[1].value
+        email: query('#login-email').value,
+        password: query('#login-password').value
     };
-    
+
     try {
         // login user
         await axios.post('/users/login', user);
-        await axios.get('/main');
-    } catch (e) {}
+        window.location.href = '/home'
+    } catch (ex) {
+        // wrong login info
+    }
 };
 
 window.onload = () => {
     // hide signup form
-    query('#signup-form').style.display = 'none';
-
-    // show login form
-    query('#login-toggle').addEventListener('click', () => {
-        query('#login-form').style.display = 'block';
-        query('#signup-form').style.display = 'none';
-    });
-
-    // show signup form
-    query('#signup-toggle').addEventListener('click', () => {
-        query('#signup-form').style.display = 'block';
-        query('#login-form').style.display = 'none';
-    });
-
-    query('#login-form').addEventListener('submit', loginFormSubmit);
-    query('#signup-form').addEventListener('submit', signupFormSubmit);
+    $signupForm.style.display = 'none';
+    $loginToggle.style.borderBottom = '1px solid red';
+    $loginToggle.addEventListener('click', loginToggleClick);
+    $loginButton.addEventListener('click', loginFormSubmit);
+    $signupToggle.addEventListener('click', signupToggleClick);    
+    $signupButton.addEventListener('click', signupFormSubmit);
 };

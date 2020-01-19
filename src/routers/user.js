@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+require('express-session');
 const router = new express.Router();
 
 // setup user endpoints
@@ -14,7 +15,8 @@ router.post('/users', async (req, res) => {
         // TODO: send welcome email
         // login user
         const token = await user.generateAuthToken();
-        res.status(201).send({ user, token });
+        req.session.token = token;
+        res.status(201).send({ user });
     } catch (e) {
         res.status(400).send(e);
     }
@@ -25,7 +27,11 @@ router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         const token = await user.generateAuthToken();
-        res.send({ user, token });
+
+        if (!req.session.token) {
+            req.session.token = token;
+        }
+        res.send({ user });
     } catch (e) {
         res.status(400).send();
     }
@@ -34,8 +40,7 @@ router.post('/users/login', async (req, res) => {
 // logout user
 router.post('/users/logout', auth, async (req, res) => {
     try {
-        req.user.tokens = [];
-        await req.user.save();
+        req.session.destroy();
         res.send();
     } catch (e) {
         res.status(500).send();

@@ -1,5 +1,17 @@
+label {
+    color: black;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
 .m-5 {
     margin: 5%;
+}
+
+.p-t-10 {
+    padding-top: 10px;
 }
 
 .background {
@@ -12,7 +24,14 @@
 }
 
 .auth-form {
-    background-color: #8588b3;
-    /* opacity: 80%; */
+    background-color: #ececec;
+    opacity: 95%;
     border-radius: 3%;
+}
+
+.btn-toggle {
+    border: none;
+    background-color: transparent;
+    color: blue;
+    padding: 10px 80px;
 }

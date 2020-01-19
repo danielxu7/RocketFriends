@@ -60,35 +60,23 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tokens: [{
-        token: {
-            type: String,
-            required: true
-        }
-    }],
 }, {
     timestamps: true
 });
 
 // override toJSON method
-// do not send back user's password and auth tokens
+// do not send back user's password
 userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();
 
     delete userObject.password;
-    delete userObject.tokens;
     return userObject;
 }
 
 // returns auth token for a user
 userSchema.methods.generateAuthToken = async function () {
-    const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
-
-    // add the new token to a user's list of tokens
-    user.tokens = user.tokens.concat({ token });
-    await user.save();
+    const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
     return token;
 }
 

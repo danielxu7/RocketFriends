@@ -1,6 +1,7 @@
 const auth = require('./middleware/auth')
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const hbs = require('hbs')
 require('./db/mongoose');
 
@@ -21,6 +22,15 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath));
 app.use(express.json());
 
+// session cookies
+// TODO: secure cookies for production
+app.use(session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+}));
+
 // routers
 app.use(userRouter);
 
@@ -29,7 +39,7 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/home', (req, res) => {
+app.get('/home', auth, (req, res) => {
     res.render('home');
 });
 

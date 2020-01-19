@@ -16,12 +16,14 @@
          <div class="row align-items-center background">
             <div class="col-md-4"></div>
             <div class="col-md-4 auth-form">
-               <div class="text-center">
+               <div class="text-center p-t-10">
                   <h1>Rocket Friends!</h1>
-                  <a id="login-toggle" href="javascript:void(0)">Login</a>
-                  <a id="signup-toggle" href="javascript:void(0)">Sign Up</a>
+                  <div class="p-t-10">
+                     <a id="login-toggle" class="btn-toggle" href="javascript:void(0)">Login</a>
+                     <a id="signup-toggle" class="btn-toggle" href="javascript:void(0)">Sign Up</a>
+                  </div>
                </div>
-               <form id="login-form" class="m-5" action="/home">
+               <form id="login-form" class="m-5">
                   <div class="form-group">
                      <label for="login-email">Email address</label>
                      <input class="form-control" id="login-email" name="email" placeholder="you@example.com"/>
@@ -30,9 +32,9 @@
                      <label for="login-password">Password</label>
                      <input class="form-control" id="login-password" name="password" placeholder="Your Password"/>
                   </div>
-                  <button type="submit" class="btn btn-primary">LOG IN</button>
+                  <button id="login-button" class="btn btn-primary" type="button">LOG IN</button>
                </form>
-               <form id="signup-form" class="m-5" action="/home">
+               <form id="signup-form" class="m-5" action="/home" method="GET">
                   <div class="form-row">
                      <div class="form-group col-md-4">
                         <label for="signup-name">Name</label>
@@ -60,11 +62,11 @@
                            <option>Europe</option>
                         </select>
                      </div>
-                     <div class="form-group col-md-4"">
+                     <div class="form-group col-md-4">
                         <label for="signup-tier">Tier</label>
                         <select id="signup-tier" class="form-control" name="tier">
-                           <option selected>Unranked</option>
-                           <option>Bronze</option>
+                           <option>Unranked</option>
+                           <option selected>Bronze</option>
                            <option>Silver</option>
                            <option>Gold</option>
                            <option>Platinum</option>
@@ -73,11 +75,11 @@
                            <option>Grand Champion</option>
                         </select>
                      </div>
-                     <div class="form-group col-md-4"">
+                     <div class="form-group col-md-4">
                         <label for="signup-rank">Rank</label>
                         <select id="signup-rank" class="form-control" name="rank">
-                           <option selected>...</option>
-                           <option>1</option>
+                           <option>...</option>
+                           <option selected>1</option>
                            <option>2</option>
                            <option>3</option>
                         </select>
@@ -87,7 +89,7 @@
                      <label for="signup-id">RocketID</label>
                      <input class="form-control" id="signup-id" name="rocketid" placeholder="Octane#9000"/>
                   </div>
-                  <button type="submit" class="btn btn-primary">SIGN UP</button>
+                  <button id="signup-button" class="btn btn-primary" type="button">SIGN UP</button>
                </form>
             </div>
             <div class="col-sm-4"></div>
@@ -95,7 +97,7 @@
       </div>
       
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <script src="js/login.js"></script>     
+      <script src="js/login.js"></script>
       <script
          src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

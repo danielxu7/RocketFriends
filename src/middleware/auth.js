@@ -1,24 +1,17 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
 
 // middleware to check if user is authenticated
+// render login screen if not authenticated
 const auth = async (req, res, next) => {
     try {
-        // remove Bearer
-        const token = req.header('Authorization').replace('Bearer ', '');
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findOne({ _id: decoded._id, 'tokens.token': token });
-
-        if (!user) {
-            throw new Error('Not authenticated.');
-        }
-
-        req.token = token;
-        req.user = user;
+        const token = req.session.token;
+        jwt.verify(token, process.env.JWT_SECRET);
         next();
     } catch (e) {
-        res.status(401).send({ error: 'Please authenticate.' });
+        // res.status(401).send({ error: 'Please authenticate.' });
+        res.render('index');
+        // TODO: send 401 or redirect to index
     }
-}
+};
 
 module.exports = auth;
