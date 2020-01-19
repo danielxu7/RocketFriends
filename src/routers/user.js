@@ -3,6 +3,8 @@ const User = require('../models/user');
 const auth = require('../middleware/auth');
 const router = new express.Router();
 
+// setup user endpoints
+
 // create user
 router.post('/users', async (req, res) => {
     const user = new User(req.body);
@@ -75,8 +77,4 @@ router.delete('/users/me', auth, async (req, res) => {
     }
 });
 
-router.get('/*', async (req, res) => {
-    res.send('Hello world');
-});
-
-module.exports = router
+module.exports = router;

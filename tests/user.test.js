@@ -13,7 +13,11 @@ test('Should create a new user', async () => {
         name: 'Danielle',
         email: 'Danielle@example.com',
         password: 'MyPass777!',
-        age: 14
+        age: 14,
+        region: 0,
+        tier: 0,
+        rank: 0,
+        rocketid: 'hi',
     }).expect(201);
 
     // assert that the database was changed correctly

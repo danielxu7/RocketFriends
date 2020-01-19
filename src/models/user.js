@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('Email is invalid');
-            }
+            // if (!validator.isEmail(value)) {
+            //     throw new Error('Email is invalid');
+            // }
         }
     },
     password: {
@@ -28,21 +28,37 @@ const userSchema = new mongoose.Schema({
         minlength: 4,
         trim: true,
         validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('Password cannot contain "password"')
-            }
+            // if (value.toLowerCase().includes('password')) {
+            //     throw new Error('Password cannot contain "password"')
+            // }
         }
     },
     age: {
         type: Number,
-        default: 0,
+        required: true,
         validate(value) {
-            if (value < 0) {
-                throw new Error('Age must be a postive number');
-            } else if (value < 13) {
-                throw new Error('You must be at least 13 years old to make an account');
-            }
+            // if (value < 0) {
+            //     throw new Error('Age must be a postive number');
+            // } else if (value < 13) {
+            //     throw new Error('You must be at least 13 years old to make an account');
+            // }
         }
+    },
+    region: {
+        type: Number,
+        required: true,
+    },
+    tier: {
+        type: Number,
+        required: true,
+    },
+    rank: {
+        type: Number,
+        required: true,
+    },
+    rocketid: {
+        type: String,
+        required: true,
     },
     tokens: [{
         token: {

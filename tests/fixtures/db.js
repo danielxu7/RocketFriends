@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('../../src/models/user');
 
+// create dummy users
 const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
     _id: userOneId,
@@ -9,6 +10,10 @@ const userOne = {
     email: 'Daniel@example.com',
     password: '56what!!',
     age: 16,
+    region: 0,
+        tier: 0,
+        rank: 0,
+        rocketid: 'hi',
     tokens: [{
         token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
     }]
@@ -21,6 +26,10 @@ const userTwo = {
     email: 'Dan@example.com',
     password: 'myhouse099@@',
     age: 17,
+    region: 0,
+        tier: 0,
+        rank: 0,
+        rocketid: 'hi',
     tokens: [{
         token: jwt.sign({ _id: userTwoId }, process.env.JWT_SECRET)
     }]

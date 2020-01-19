@@ -1,3 +1,18 @@
-h1 {
-    text-align: center;
+.m-5 {
+    margin: 5%;
+}
+
+.background {
+    background: #000 url(/img/background.jpg) no-repeat bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.auth-form {
+    background-color: #8588b3;
+    /* opacity: 80%; */
+    border-radius: 3%;
 }
