@@ -33,8 +33,9 @@ const signupFormSubmit = async () => {
     });
 
     try {
-        await axios.post('/users', user);
-        window.location.href = '/home'
+        const res = await axios.post('/users', user);
+        console.log(res);
+        window.location.href = `/home?username=${res.data.user.name}`;
     } catch (ex) {
         // could not create user
     }
@@ -49,8 +50,8 @@ const loginFormSubmit = async () => {
 
     try {
         // login user
-        await axios.post('/users/login', user);
-        window.location.href = '/home'
+        const res = await axios.post('/users/login', user);
+        window.location.href = `/home?username=${res.data.user.name}`;
     } catch (ex) {
         // wrong login info
     }
