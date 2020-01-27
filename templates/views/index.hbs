@@ -26,32 +26,32 @@
                <form id="login-form" class="m-5">
                   <div class="form-group">
                      <label for="login-email">Email address</label>
-                     <input class="form-control" id="login-email" name="email" placeholder="you@example.com"/>
+                     <input class="form-control" id="login-email" name="email" placeholder="you@example.com" required/>
                   </div>
                   <div class="form-group">
                      <label for="login-password">Password</label>
-                     <input class="form-control" id="login-password" name="password" placeholder="Your Password"/>
+                     <input class="form-control" id="login-password" name="password" placeholder="Your Password" required/>
                   </div>
                   <button id="login-button" class="btn btn-primary" type="button">LOG IN</button>
                </form>
                <form id="signup-form" class="m-5" action="/home" method="GET">
                   <div class="form-row">
                      <div class="form-group col-md-4">
-                        <label for="signup-name">Name</label>
-                        <input class="form-control" id="signup-name" name="name" placeholder="John Smith"/>
+                        <label for="signup-name">Username</label>
+                        <input class="form-control" id="signup-name" name="name" placeholder="JohnSmith123" required/>
                      </div>
                      <div class="form-group col-md-8">
                         <label for="signup-email">Email address</label>
-                        <input class="form-control" id="signup-email" name="email" placeholder="you@example.com"/>
+                        <input class="form-control" id="signup-email" name="email" placeholder="you@example.com" required/>
                      </div>
                   </div>                  
                   <div class="form-group">
                      <label for="signup-password">Password</label>
-                     <input class="form-control" id="signup-password" name="password" placeholder="Your Password"/>
+                     <input class="form-control" id="signup-password" name="password" placeholder="Your Password" required/>
                   </div>
                   <div class="form-group">
                      <label for="signup-age">Age</label>
-                     <input class="form-control" id="signup-age" name="age" placeholder="13"/>
+                     <input class="form-control" id="signup-age" name="age" placeholder="13" required/>
                   </div>
                   <div class="form-row">
                      <div class="form-group col-md-4">
@@ -87,7 +87,7 @@
                   </div>
                   <div class="form-group">
                      <label for="signup-id">RocketID</label>
-                     <input class="form-control" id="signup-id" name="rocketid" placeholder="Octane#9000"/>
+                     <input class="form-control" id="signup-id" name="rocketid" placeholder="Octane#9000" required/>
                   </div>
                   <button id="signup-button" class="btn btn-primary" type="button">SIGN UP</button>
                </form>
